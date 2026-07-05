@@ -1,3 +1,183 @@
-body{
-    background-color: black;
+/* ============================================
+   Variables Globales
+   ============================================ */
+:root {
+    --transition: 1s ease;
+    --title-font-size: 0.75rem;   /* Tamaño base del título */
+    --title-padding: 10px 15px;  /* Espaciado interno */
+    --title-bg: rgba(95, 95, 95, 0.274); /* Fondo semitransparente */
+    --title-color: #fff0f0;      /* Color del texto */
+    --title-bottom: 15px;        /* Posición desde abajo */
+    --title-left: 15px;          /* Posición desde la izquierda */
+    --title-radius: 6px;         /* Bordes redondeados */
+}
+
+/* ============================================
+   Estilos Base
+   ============================================ */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background-color: #ffdab5;
+    margin: 0;
+}
+
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+header {
+    background: #2d3436;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.Contenedor-MainTitle h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #fdcb6e;
+}
+
+.aboutMe {
+    max-width: 500px;
+}
+
+.aboutMe h2 {
+    margin: 0 0 10px 0;
+    color: #fdcb6e;
+}
+
+.aboutMe p {
+    margin: 0;
+    line-height: 1.6;
+    color: #dfe6e9;
+}
+
+/* ============================================
+   SECCIÓN DE PROYECTOS
+   ============================================ */
+#section {
+    background: #2d3436;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#section-title {
+    text-align: center;
+    color: #ebb72a;
+    margin-bottom: 20px;
+}
+
+/* ============================================
+   GRID DE GALERÍA (3 columnas, 2 filas)
+   ============================================ */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    grid-template-rows: repeat(2, 350px);  /* 2 filas de 250px de alto */
+    gap: 15px;
+}
+
+/* ============================================
+   TÍTULO DE LA IMAGEN (Absoluto)
+   ============================================ */
+.tittle-img {
+    position: absolute;
+    top: var(--title-bottom, 20px);   /* Usa variable con fallback */
+    right: 15px;                      /* Opcional: para que no se salga */
+    background: var(--title-bg, rgba(0, 0, 0, 0.6)); /* con valor normal y de respaldo*/
+    color: var(--title-color, #ff0505);
+    padding: var(--title-padding, 10px 15px);
+    border-radius: var(--title-radius, 6px);
+    font-size: var(--title-font-size, 1.2rem);
+    font-weight: 600;
+    text-align: center;
+    backdrop-filter: blur(4px);          /* Efecto vidrio*/
+    transition: all var(--transition);
+    margin: 0;                           /* Quita márgenes por defecto */
+    line-height: 1.4;
+    pointer-events: none;                /* Para que no interfiera con hover */
+}
+
+/* ============================================
+   CONTENEDOR DE IMAGEN (El DIV)
+   ============================================ */
+.gallery-item {
+    position: relative;
+    overflow: hidden;          /* Oculta el exceso de la imagen */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #ddd;          /* Color de fondo mientras carga */
+    width: 100%;               /* Ocupa todo el ancho de su celda */
+    height: 100%;              /* Ocupa todo el alto de su celda */
+}
+
+/* ============================================
+   LA IMAGEN DENTRO DEL CONTENEDOR
+   ============================================ */
+.gallery-item img {
+    width: 100%;               /* Ocupa todo el ancho del contenedor */
+    height: 100%;              /* Ocupa todo el alto del contenedor */
+    object-fit: cover;         /* Recorta la imagen para llenar sin deformar */
+    display: block;            /* Elimina el espacio extra debajo de la imagen */
+    transition: transform 0.4s ease;
+}
+
+/* ============================================
+   EFECTO ZOOM AL PASAR EL RATÓN
+   ============================================ */
+.gallery-item:hover img {
+    transform: scale(1.10);    /* Zoom suave al hacer hover */
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    background: #2d3436;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   RESPONSIVE: MÓVIL
+   ============================================ */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+        grid-template-rows: repeat(3, 200px);  /* 3 filas de 200px */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;            /* 1 columna en móvil */
+        grid-template-rows: repeat(6, 200px);  /* 6 filas de 200px */
+    }
+    
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
 }
